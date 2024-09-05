@@ -2,30 +2,35 @@
 title: "Homework: Finding Your Way in R and Python"
 execute:
   error: true
-author: "Your Name"
+author: "Riddhimoy Ghosh"
 output: html_document
 ---
 
 Instructions: Once you have finished this assignment, render the document (Ctrl/Cmd-Shift-K or the Render button). Commit the qmd file and any other files you have changed to the repository and push your changes.
 
-In Canvas, submit a link to your github repository containing the updated files. 
+In Canvas, submit a link to your github repository containing the updated files.
 
-Note: Submitting your link in Canvas lets me know that you are ready for me to grade your homework. You can commit half-finished or not-working homework to GitHub, and it is good practice to commit frequently (at least at the end of each work session). 
+Note: Submitting your link in Canvas lets me know that you are ready for me to grade your homework. You can commit half-finished or not-working homework to GitHub, and it is good practice to commit frequently (at least at the end of each work session).
 
 # Modes of Execution
 
 Consider the 6 counting words examples in the [textbook module](https://srvanderplas.github.io/stat-computing-r-python/part-tools/04-scripts-notebooks.html#a-short-history-of-talking-to-computers) (they are in 3 separate 'your turn' sections). Look at the code, and then at the information provided for each example. What is different? What is the same? Write 2-3 sentences describing how script mode, interactive mode, and command-line mode differ in R and Python.
 
----
+------------------------------------------------------------------------
 
 Replace this line of text with your 2-3 sentences about script-mode, interactive mode, and command-line mode in R and Python
 
----
+-   **Script Mode:** The script mode is the one that is probably used the most, where we develop one click executable code and run the entire thing at a time to get the intended results/ outputs. In R, we use the Source key to generally run the entire script. In Python, I generally use the Spyder IDE where Ctrl+Enter runs the entire script.
 
+-   **Interactive mode:** This is where we run the code line by line and often used when we are in the process of developing a script. In R generally use Ctrl+Enter or the un button to execute lines/ selected lines. In Spyder, we use F9 to run the current/selected lines.
+
+-   **Terminal mode:** This mode is like the script mode where we run the entire script at a go, but we donot need to go into the IDE to execute it. We directly refer the script from the terminal and run it ( provide any input files that may be necessary) and get the required output. The only catch is that we need to have R/ Python binaries added to the system path for this to work. If Anaconda is used for Python, we can use the Anaconda Prompt instead of the Command Prompt and donot have to worry a about the binaries installed or not.
+
+------------------------------------------------------------------------
 
 # Programming with Variables
 
-In this section, you'll demonstrate that you understand how to solve simple math problems using code. First, you'll want to define variables to represent the variables in the equation. Give the variables values that can be used to determine the value of the variable on the other side of the `=`. Then, write code to solve the equation for the value of the variable. 
+In this section, you'll demonstrate that you understand how to solve simple math problems using code. First, you'll want to define variables to represent the variables in the equation. Give the variables values that can be used to determine the value of the variable on the other side of the `=`. Then, write code to solve the equation for the value of the variable.
 
 ## Pythagorean Theorem in R
 
@@ -35,6 +40,10 @@ Use the chunk below to define variables $a$, $b$, and $c$, where you define the 
 
 ```{r pythagorean-theorem-r}
 # Your pythagorean theorem code goes here
+a = 3
+b = 4
+c = sqrt(a^2+b^2)
+cat("When the value of a is ", a,",and the value of b is",b,"; from Pythagorean Theorem we get the value of c to be", c,".")
 
 ```
 
@@ -42,10 +51,19 @@ Use the chunk below to define variables $a$, $b$, and $c$, where you define the 
 
 $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
 
-Use the chunk below to define variables $a$, $b$, and $c$, and then define $x1$ and $x2$, the possible values for $x$. You may find it helpful to define a few additional variables, such as the value of the discriminant $\sqrt{b^2 - 4ac}$, to make it easier to calculate the results. 
+Use the chunk below to define variables $a$, $b$, and $c$, and then define $x1$ and $x2$, the possible values for $x$. You may find it helpful to define a few additional variables, such as the value of the discriminant $\sqrt{b^2 - 4ac}$, to make it easier to calculate the results.
 
 ```{python quad-formula-py}
 # Your quadratic formula code goes here
+import numpy as np
+a = 2
+c = 5
+b = 7
+
+x1 = (-b + np.sqrt(b**2-4*a*c))/2*a
+x2 = (-b - np.sqrt(b**2-4*a*c))/2*a
+
+print(f'The Results of the Quadratic Formula when a is {a}, b is {b} and c is {c} is given by x1 = {x1} and x2={x2}')
 
 ```
 
@@ -80,5 +98,20 @@ Here is how I solved the problem:
 
 ```{r cleaning-the-data-r}
 # Your implementation code goes here
+library(readr)
+library(ggplot2)
+# This line reads in a tab-separated data file with a header naming the columns
+salary <- read.table("02-data.tsv", sep = "\t", header = T)
+
+# This code plots labels for each individual at location (x, y)
+library(ggplot2)
+ggplot(salary, aes(x = Hire.Year, y = parse_number(Salary), label = Name)) +
+  geom_label()+labs(title="The Office Plot",
+        x ="Hire Year", y = "Salary")
+
+# # This displays the salary object
+# salary
 
 ```
+
+*We see that seniority dictates the Salary the employees make. Michael is the senior most employee and gets the most salary, while Pam is the newest employee in the group and makes the least amount.*
