@@ -92,9 +92,16 @@ salary
 
 ------------------------------------------------------------------------
 
-The problem with the data is:
+**The problem with the data is:**
 
-Here is how I solved the problem:
+```{r}
+salary$Salary
+typeof(salary$Salary)
+```
+
+The Salary Column has the character element *"\$67 ,872.00"* with special character *'\$'* that coerces the entire Salary column to character and disrupts the Salary axis scale (which is expected to be numeric) when attempted to be plotted.
+
+**Here is how I solved the problem:**
 
 ```{r cleaning-the-data-r}
 # Your implementation code goes here
